@@ -1,1 +1,7 @@
-# NUSConverter
+# NUS Converter
+A simple GUI for CNUSPacker and CDecrypt.
+
+# Credits
+CNUSPacker v0.1-c2w by [NicoAICP](https://github.com/Hotbrawl20/CNUS_Packer), [Morilli](https://github.com/Morilli/CNUS_Packer), [phacox.cll](https://github.com/phacoxcll/CNUS_Packer) (C# Port of NUSPacker by [timogus](https://github.com/ihaveamac/nuspacker), [FIX94](https://github.com/FIX94/nuspacker))
+
+CDecrypt v3.0 by [crediar](https://code.google.com/archive/p/cdecrypt/), [phacox.cll](https://github.com/phacoxcll/cdecrypt)
