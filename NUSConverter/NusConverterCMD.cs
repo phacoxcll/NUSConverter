@@ -11,7 +11,7 @@ namespace NUSConverter
         public NUSConverterCMD()
         {
             Log.SaveIn("NUSConverter.log");
-            Log.WriteLine("NUS Converter v1.0 by phacox.cll");
+            Log.WriteLine("NUS Converter v1.1 by phacox.cll");
             Log.WriteLine(DateTime.Now.ToString());
 
             string NUSConverterDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NUSConverter");
@@ -31,9 +31,6 @@ namespace NUSConverter
                 fs = File.Create(cdecryptPath);
                 fs.Write(Resources.CDecrypt, 0, Resources.CDecrypt.Length);
                 fs.Close();
-                fs = File.Create(Path.Combine(unpackPath, "libeay32.dll"));
-                fs.Write(Resources.libeay32, 0, Resources.libeay32.Length);
-                fs.Close();
             }
 
             StringBuilder sb = new StringBuilder();
@@ -47,7 +44,7 @@ namespace NUSConverter
             }
             if (!File.Exists(cdecryptPath))
             {
-                sb.AppendLine("Warning! \"" + cdecryptPath + "\" not found! CDecrypt allows you to decrypt NUS Content for Loadiine.");
+                sb.AppendLine("Warning! \"" + cdecryptPath + "\" not found! CDecrypt allows you to decrypt NUS Content for CEMU/Loadiine.");
                 warning = true;
             }
             if (warning)            

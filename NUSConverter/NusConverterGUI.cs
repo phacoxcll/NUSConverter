@@ -14,7 +14,7 @@ namespace NUSConverter
         public NUSConverterGUI()
         {
             Log.SaveIn("NUSConverter.log");
-            Log.WriteLine("NUS Converter v1.0 by phacox.cll");
+            Log.WriteLine("NUS Converter v1.1 by phacox.cll");
             Log.WriteLine(DateTime.Now.ToString());
 
             InitializeComponent();
@@ -36,9 +36,6 @@ namespace NUSConverter
                 fs = File.Create(cdecryptPath);
                 fs.Write(Resources.CDecrypt, 0, Resources.CDecrypt.Length);
                 fs.Close();
-                fs = File.Create(Path.Combine(unpackPath, "libeay32.dll"));
-                fs.Write(Resources.libeay32, 0, Resources.libeay32.Length);
-                fs.Close();
             }
 
             StringBuilder sb = new StringBuilder();
@@ -51,7 +48,7 @@ namespace NUSConverter
             }
             if (!File.Exists(cdecryptPath))
             {
-                sb.AppendLine("Warning! \"" + cdecryptPath + "\" not found! CDecrypt allows you to decrypt NUS Content for Loadiine.");
+                sb.AppendLine("Warning! \"" + cdecryptPath + "\" not found! CDecrypt allows you to decrypt NUS Content for CEMU/Loadiine.");
                 warning = true;
             }
             if (warning)
@@ -136,7 +133,7 @@ namespace NUSConverter
                     Log.WriteLine("Decrypting...");
                     Directory.CreateDirectory(output);
                     NUSContent.Decrypt(NUSContentPath, output);
-                    buttonConvert.Text = "Convert to decrypted format (for Loadiine)";
+                    buttonConvert.Text = "Convert to decrypted format (for CEMU/Loadiine)";
                     Log.WriteLine("Decrypted!");
                     MessageBox.Show("Output: \"" + output + "\"", "Decrypted!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -174,13 +171,13 @@ namespace NUSConverter
             {
                 Log.WriteLine("Ecrypted format detected.");
                 labelFormat.Text = "NUS Content format: Ecrypted (WUP Installer).";
-                buttonConvert.Text = "Convert to decrypted format (for Loadiine)";
+                buttonConvert.Text = "Convert to decrypted format (for CEMU/Loadiine)";
                 buttonConvert.Enabled = true;
             }
             else if (NUSContentFormat == NUSContent.Format.Decrypted)
             {
                 Log.WriteLine("Decrypted format detected.");
-                labelFormat.Text = "NUS Content format: Decrypted (Loadiine).";
+                labelFormat.Text = "NUS Content format: Decrypted (CEMU/Loadiine).";
                 buttonConvert.Text = "Convert to ecrypted format (for WUP Installer)";
                 buttonConvert.Enabled = true;
             }

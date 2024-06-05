@@ -32,8 +32,8 @@ namespace NUSConverter
                 throw new Exception("The \"" + Path.Combine(path, "title.tmd") + "\" file not exist.");
             if (!File.Exists(Path.Combine(path, "title.tik")))
                 throw new Exception("The \"" + Path.Combine(path, "title.tik") + "\" file not exist.");
-            if (!File.Exists(Path.Combine(path, "title.cert")))
-                throw new Exception("The \"" + Path.Combine(path, "title.cert") + "\" file not exist.");
+            /*if (!File.Exists(Path.Combine(path, "title.cert")))
+                throw new Exception("The \"" + Path.Combine(path, "title.cert") + "\" file not exist.");*/
         }
 
         public static Format GetFormat(string path)

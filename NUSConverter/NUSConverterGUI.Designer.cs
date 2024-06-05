@@ -153,9 +153,8 @@
             this.MinimumSize = new System.Drawing.Size(389, 187);
             this.Name = "NUSConverterGUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "NUS Converter v1.0";
+            this.Text = "NUS Converter v1.1";
             this.toolTip.SetToolTip(this, "Drag and drop a folder with NUS Content.");
-            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NUSConverterGUI_FormClosing);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.NusConverterGUI_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.NusConverterGUI_DragEnter);
