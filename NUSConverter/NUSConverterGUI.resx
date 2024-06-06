@@ -124,12 +124,12 @@
     <value>17, 17</value>
   </metadata>
   <data name="panel1.ToolTip" xml:space="preserve">
-    <value>NUS Converter v1.0 by phacox.cll
+    <value>NUS Converter v1.1 by phacox.cll
 Disclaimer
 The tools packaged with this application belong to their respective developers.
 Credits
-CNUSPacker v0.01-c2w by NicoAICP, Morilli, phacox.cll [C# Port of NUSPacker by timogus, FIX94]
-CDecrypt v3.0 by crediar, phacox.cll
+CNUSPacker v0.01-c2w by NicoAICP, Morilli [C# Port of NUSPacker by timogus, FIX94]
+CDecrypt v4.8 by crediar, VitaSmith
 </value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
