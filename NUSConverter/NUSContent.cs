@@ -229,8 +229,8 @@ namespace NUSConverter
             CheckEncrypted(inputPath);
             if (!CheckCommonKeyFiles())
                 throw new Exception("Common Key Files error.");
-            if (!File.Exists(Path.Combine(unpackPath, "libeay32.dll")))
-                throw new Exception("The \"" + Path.Combine(unpackPath, "libeay32.dll") + "\" file not exist.");
+            /*if (!File.Exists(Path.Combine(unpackPath, "libeay32.dll")))
+                throw new Exception("The \"" + Path.Combine(unpackPath, "libeay32.dll") + "\" file not exist.");*/
             if (!File.Exists(Path.Combine(unpackPath, "CDecrypt.exe")))
                 throw new Exception("The \"" + Path.Combine(unpackPath, "CDecrypt.exe") + "\" file not exist.");
 
