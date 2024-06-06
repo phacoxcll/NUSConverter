@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using System.Windows.Forms;
-using NUSConverter.Properties;
 
 namespace NUSConverter
 {
@@ -10,47 +8,12 @@ namespace NUSConverter
     {
         public NUSConverterCMD()
         {
-            Log.SaveIn("NUSConverter.log");
-            Log.WriteLine("NUS Converter v1.1 by phacox.cll");
-            Log.WriteLine(DateTime.Now.ToString());
+            string warning = NUSConverterBase.Initialize();
 
-            string NUSConverterDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NUSConverter");
-            string packPath = Path.Combine(NUSConverterDataPath, "pack");
-            string unpackPath = Path.Combine(NUSConverterDataPath, "unpack");
-            string cnuspackerPath = Path.Combine(packPath, "CNUSPacker.exe");
-            string cdecryptPath = Path.Combine(unpackPath, "CDecrypt.exe");
+            if (warning.Length != 0)
+                Log.WriteLine(warning);
 
-            if (!Directory.Exists(NUSConverterDataPath))
-            {
-                Directory.CreateDirectory(NUSConverterDataPath);
-                Directory.CreateDirectory(packPath);
-                Directory.CreateDirectory(unpackPath);
-                FileStream fs = File.Create(cnuspackerPath);
-                fs.Write(Resources.CNUSPacker, 0, Resources.CNUSPacker.Length);
-                fs.Close();
-                fs = File.Create(cdecryptPath);
-                fs.Write(Resources.CDecrypt, 0, Resources.CDecrypt.Length);
-                fs.Close();
-            }
-
-            StringBuilder sb = new StringBuilder();
-            Log.WriteLine(cnuspackerPath);
-            bool warning = false;
-            if (!File.Exists(cnuspackerPath))
-            {
-                sb.AppendLine("Warning! \"" + cnuspackerPath + "\" not found! CNUSPacker allows you to encrypt NUS Content for WUP Installer.");
-                sb.AppendLine("");
-                warning = true;
-            }
-            if (!File.Exists(cdecryptPath))
-            {
-                sb.AppendLine("Warning! \"" + cdecryptPath + "\" not found! CDecrypt allows you to decrypt NUS Content for CEMU/Loadiine.");
-                warning = true;
-            }
-            if (warning)            
-                Log.WriteLine(sb.ToString());            
-
-            if (NUSContent.CheckCommonKeyFiles())
+            if (NUSConverterBase.CheckCommonKeyFiles())
                 Log.WriteLine("Wii U Common Key files: OK!");
             else
                 Log.WriteLine("Wii U Common Key files: Not found.");
@@ -61,8 +24,9 @@ namespace NUSConverter
             if (args.Length == 1)
             {
                 Log.WriteLine("Path: \"" + args[0] + "\"");
-                if (NUSContent.CheckCommonKeyFiles())
+                if (NUSConverterBase.CheckCommonKeyFiles())
                 {
+                    NUSConverterBase.CheckBatchFiles();
                     try
                     {                        
                         NUSContent.Format format = NUSContent.GetFormat(args[0]);
@@ -77,7 +41,6 @@ namespace NUSConverter
                             Directory.CreateDirectory(output);
                             NUSContent.Decrypt(args[0], output);
                             Log.WriteLine("Decrypted!");
-                            MessageBox.Show("Output: \"" + output + "\"", "Decrypted!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else if (format == NUSContent.Format.Decrypted)
                         {
@@ -88,7 +51,6 @@ namespace NUSConverter
                             Log.WriteLine("Encrypting...");
                             NUSContent.Encrypt(args[0], output);
                             Log.WriteLine("Encrypted!");
-                            MessageBox.Show("Output: \"" + output + "\"", "Encrypted!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                             Log.WriteLine("NUS Content format was not detected.");
@@ -106,7 +68,7 @@ namespace NUSConverter
             }
             else if (args.Length == 2 && args[0] == "key")
             {
-                if (NUSContent.LoadKey(args[1]))
+                if (NUSConverterBase.LoadKey(args[1]))
                 {
                     Log.WriteLine("Valid Wii U Common Key.");
                     Log.WriteLine("The key was successfully loaded!");
@@ -116,7 +78,7 @@ namespace NUSConverter
             }
             else
             {
-                if (!NUSContent.CheckCommonKeyFiles())
+                if (!NUSConverterBase.CheckCommonKeyFiles())
                     Log.WriteLine("To load the Wii U Common Key use: key XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
                 Log.WriteLine("");
                 Log.WriteLine("Usage: <input path>");

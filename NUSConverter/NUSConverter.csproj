@@ -103,6 +103,7 @@
     <AssemblyOriginatorKeyFile>cll.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -116,6 +117,7 @@
   <ItemGroup>
     <Compile Include="Log.cs" />
     <Compile Include="NUSContent.cs" />
+    <Compile Include="NUSConverterBase.cs" />
     <Compile Include="NUSConverterGUI.cs">
       <SubType>Form</SubType>
     </Compile>
