@@ -10,7 +10,7 @@ namespace NUSConverter
         public static string Initialize()
         {
             Log.SaveIn("NUSConverter.log");
-            Log.WriteLine("NUS Converter v2.0 by phacox.cll");
+            Log.WriteLine("NUS Converter v2.1 by phacox.cll");
             Log.WriteLine(DateTime.Now.ToString());
 
             string NUSConverterDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NUSConverter");
@@ -195,6 +195,67 @@ namespace NUSConverter
             }
             else
                 return false;
+        }
+
+        public static void UpdateApps()
+        {
+            string NUSConverterDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NUSConverter");
+            string packPath = Path.Combine(NUSConverterDataPath, "pack");
+            string unpackPath = Path.Combine(NUSConverterDataPath, "unpack");
+            string cnuspackerPath = Path.Combine(packPath, "CNUSPacker.exe");
+            string cdecryptPath = Path.Combine(unpackPath, "CDecrypt.exe");
+            string libeay32Path = Path.Combine(unpackPath, "libeay32.dll");
+            string packRunPath = Path.Combine(packPath, "run.bat");
+            string unpackRunPath = Path.Combine(unpackPath, "run.bat");
+            string unpackGetFilePath = Path.Combine(unpackPath, "getfile.bat");
+
+            if (File.Exists(cnuspackerPath))
+                File.Delete(cnuspackerPath);
+
+            if (File.Exists(cdecryptPath))
+                File.Delete(cdecryptPath);
+
+            if (File.Exists(libeay32Path))
+                File.Delete(libeay32Path);
+
+            if (File.Exists(packRunPath))
+                File.Delete(packRunPath);
+
+            if (File.Exists(unpackRunPath))
+                File.Delete(unpackRunPath);
+
+            if (File.Exists(unpackGetFilePath))
+                File.Delete(unpackGetFilePath);
+
+            Directory.CreateDirectory(NUSConverterDataPath);
+            Directory.CreateDirectory(packPath);
+            Directory.CreateDirectory(unpackPath);
+
+            FileStream fs = File.Create(cnuspackerPath);
+            fs.Write(Resources.CNUSPacker, 0, Resources.CNUSPacker.Length);
+            fs.Close();
+
+            fs = File.Create(cdecryptPath);
+            fs.Write(Resources.CDecrypt, 0, Resources.CDecrypt.Length);
+            fs.Close();
+
+            StreamWriter sw = File.CreateText(packRunPath);
+            sw.WriteLine("@echo off");
+            sw.WriteLine("cd \"" + packPath + "\"");
+            sw.Write("CNUSPacker.exe -in %1 -out %2");
+            sw.Close();
+
+            sw = File.CreateText(unpackRunPath);
+            sw.WriteLine("@echo off");
+            sw.WriteLine("cd \"" + unpackPath + "\"");
+            sw.Write("CDecrypt.exe %1 %2");
+            sw.Close();
+
+            sw = File.CreateText(unpackGetFilePath);
+            sw.WriteLine("@echo off");
+            sw.WriteLine("cd \"" + unpackPath + "\"");
+            sw.Write("CDecrypt.exe %1 %2 %3");
+            sw.Close();
         }
     }
 }

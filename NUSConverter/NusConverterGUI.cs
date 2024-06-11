@@ -170,7 +170,20 @@ namespace NUSConverter
                     NUSContent.Decrypt(path, Path.Combine("meta", "iconTex.tga"), Path.Combine(Path.GetTempPath(), "NUSConverter", "meta", "iconTex.tga"));
                     NUSContent.Decrypt(path, Path.Combine("meta", "bootTvTex.tga"), Path.Combine(Path.GetTempPath(), "NUSConverter", "meta", "bootTvTex.tga"));
 
-                    MetaData = NUSContent.GetMeta(Path.Combine(Path.GetTempPath(), "NUSConverter"));
+                    try
+                    {
+                        MetaData = NUSContent.GetMeta(Path.Combine(Path.GetTempPath(), "NUSConverter"));
+                    }
+                    catch
+                    {
+                        NUSConverterBase.UpdateApps();
+
+                        NUSContent.Decrypt(path, Path.Combine("meta", "meta.xml"), Path.Combine(Path.GetTempPath(), "NUSConverter", "meta", "meta.xml"));
+                        NUSContent.Decrypt(path, Path.Combine("meta", "iconTex.tga"), Path.Combine(Path.GetTempPath(), "NUSConverter", "meta", "iconTex.tga"));
+                        NUSContent.Decrypt(path, Path.Combine("meta", "bootTvTex.tga"), Path.Combine(Path.GetTempPath(), "NUSConverter", "meta", "bootTvTex.tga"));
+
+                        MetaData = NUSContent.GetMeta(Path.Combine(Path.GetTempPath(), "NUSConverter"));
+                    }
 
                     textBoxTitleID.Text = MetaData.TitleID;
                     textBoxProductCode.Text = MetaData.ProductCode;

@@ -50,15 +50,15 @@
             this.textBoxLongName = new System.Windows.Forms.TextBox();
             this.labelLongName = new System.Windows.Forms.Label();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
-            this.pictureBoxTv = new System.Windows.Forms.PictureBox();
             this.contextMenuStripIcon = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.pictureBoxTv = new System.Windows.Forms.PictureBox();
             this.contextMenuStripTv = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemTv = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTv)).BeginInit();
             this.contextMenuStripIcon.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTv)).BeginInit();
             this.contextMenuStripTv.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -249,19 +249,6 @@
             this.pictureBoxIcon.TabIndex = 17;
             this.pictureBoxIcon.TabStop = false;
             // 
-            // pictureBoxTv
-            // 
-            this.pictureBoxTv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxTv.ContextMenuStrip = this.contextMenuStripTv;
-            this.pictureBoxTv.Location = new System.Drawing.Point(146, 180);
-            this.pictureBoxTv.Name = "pictureBoxTv";
-            this.pictureBoxTv.Size = new System.Drawing.Size(228, 128);
-            this.pictureBoxTv.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxTv.TabIndex = 18;
-            this.pictureBoxTv.TabStop = false;
-            // 
             // contextMenuStripIcon
             // 
             this.contextMenuStripIcon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -276,9 +263,18 @@
             this.toolStripMenuItem.Text = "Save image...";
             this.toolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
-            // saveFileDialog
+            // pictureBoxTv
             // 
-            this.saveFileDialog.Filter = "PNG file (*.png)|*.png|All files (*.*)|*.*";
+            this.pictureBoxTv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxTv.ContextMenuStrip = this.contextMenuStripTv;
+            this.pictureBoxTv.Location = new System.Drawing.Point(146, 180);
+            this.pictureBoxTv.Name = "pictureBoxTv";
+            this.pictureBoxTv.Size = new System.Drawing.Size(228, 128);
+            this.pictureBoxTv.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxTv.TabIndex = 18;
+            this.pictureBoxTv.TabStop = false;
             // 
             // contextMenuStripTv
             // 
@@ -290,9 +286,13 @@
             // toolStripMenuItemTv
             // 
             this.toolStripMenuItemTv.Name = "toolStripMenuItemTv";
-            this.toolStripMenuItemTv.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemTv.Size = new System.Drawing.Size(143, 22);
             this.toolStripMenuItemTv.Text = "Save image...";
             this.toolStripMenuItemTv.Click += new System.EventHandler(this.toolStripMenuItemTv_Click);
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.Filter = "PNG file (*.png)|*.png|All files (*.*)|*.*";
             // 
             // NUSConverterGUI
             // 
@@ -325,14 +325,14 @@
             this.MinimumSize = new System.Drawing.Size(402, 412);
             this.Name = "NUSConverterGUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "NUS Converter v2.0";
+            this.Text = "NUS Converter v2.1";
             this.toolTip.SetToolTip(this, "Drag and drop a folder with NUS Content.");
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NUSConverterGUI_FormClosing);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.NusConverterGUI_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.NusConverterGUI_DragEnter);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTv)).EndInit();
             this.contextMenuStripIcon.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTv)).EndInit();
             this.contextMenuStripTv.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
